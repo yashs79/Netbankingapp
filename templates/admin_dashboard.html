@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px; /* Padding for the fixed navbar */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+        </div>
+    </nav>
+    <br><br>
+    <div class="container">
+        <h1>Welcome, {{ username }}</h1>
+
+        <!-- Add New User Form -->
+        <h2>Add New User</h2>
+        <form action="{{ url_for('add_user') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="holder_name">Account Holder Name:</label>
+                <input type="text" id="holder_name" name="holder_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="initial_balance">Initial Balance:</label>
+                <input type="number" id="initial_balance" name="initial_balance" class="form-control" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+
+        <!-- Create Loan Form -->
+        <h2>Create Loan</h2>
+        <form action="{{ url_for('create_loan') }}" method="POST">
+            <div class="form-group">
+                <label for="user_id">User ID:</label>
+                <input type="number" id="user_id" name="user_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Loan Amount:</label>
+                <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="interest_rate">Interest Rate:</label>
+                <input type="number" id="interest_rate" name="interest_rate" class="form-control" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="term_months">Term (Months):</label>
+                <input type="number" id="term_months" name="term_months" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Loan</button>
+        </form>
+
+        <!-- Add Money to Account Form -->
+        <h2>Deposit Money to Account</h2>
+        <form action="{{ url_for('add_money') }}" method="POST">
+            <div class="form-group">
+                <label for="account_number">Account Number:</label>
+                <input type="number" id="account_number" name="account_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Money</button>
+        </form>
+
+        <!-- Add New Card Form -->
+        <h2>Add New Card</h2>
+        <form action="{{ url_for('add_card') }}" method="POST">
+            <div class="form-group">
+                <label for="user_id">User ID:</label>
+                <input type="text" id="user_id" name="user_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="card_number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="card_type">Card Type:</label>
+                <input type="text" id="card_type" name="card_type" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date:</label>
+                <input type="text" id="expiry_date" name="expiry_date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Card</button>
+            
+        </form>
+
+        <br>
+        <h4>VIEW ALL USERS </h4>
+        <ul>
+            {% for user in users %}
+                <li><a href="{{ url_for('admin_profile', user_id=user.id) }}">{{ user.username }}</a></li>
+            {% endfor %}
+            </ul><br>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </body>

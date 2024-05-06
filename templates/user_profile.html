@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p><strong>Username:</strong> {{ user_profile.username }}</p>
+    <p><strong>ID:</strong> {{ user_profile.id }}</p>
+    <p><strong>Account Number:</strong> {{ user_profile.account_number }}</p>
+    <p><strong>Holder Name:</strong> {{ user_profile.holder_name }}</p>
+    <p><strong>Credit Score:</strong> {{ user_profile.credit_score }}</p>
+
+    <h2>Beneficiaries</h2>
+    <ul>
+        {% for beneficiary in beneficiaries %}
+            <li>{{ beneficiary.beneficiary_name }} - {{ beneficiary.account_number_beneficiary }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

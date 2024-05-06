@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+</head>
+<body>
+    <h1>Admin Profile</h1>
+    <p><strong>Username:</strong> {{ user_profile.username }}</p>
+    <p><strong>ID:</strong> {{ user_profile.id }}</p>
+    <p><strong>Account Number:</strong> {{ user_profile.account_number }}</p>
+    <p><strong>Holder Name:</strong> {{ user_profile.holder_name }}</p>
+    <p><strong>Credit Score:</strong> {{ user_profile.credit_score }}</p>
+
+    <h2>Beneficiaries</h2>
+    <ul>
+        {% for beneficiary in beneficiaries %}
+            <li>{{ beneficiary.beneficiary_name }} - {{ beneficiary.account_number_beneficiary }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Modify User Profile</h2>
+    <form action="{{ url_for('admin_profile', user_id=user_profile.id) }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ user_profile.username }}" required><br>
+    
+        <label for="holder_name">Holder Name:</label>
+        <input type="text" id="holder_name" name="holder_name" value="{{ user_profile.holder_name }}" required><br>
+    
+        <label for="account_number">Account Number:</label>
+        <input type="text" id="account_number" name="account_number" value="{{ user_profile.account_number }}" required><br>
+    
+        <label for="credit_score">Credit Score:</label>
+        <input type="text" id="credit_score" name="credit_score" value="{{ user_profile.credit_score }}" required><br>
+    
+        <h3>Beneficiaries:</h3>
+        {% for beneficiary in user_profile.beneficiaries %}
+        <div>
+            <label for="beneficiary_name_{{ loop.index }}">Beneficiary Name:</label>
+            <input type="text" id="beneficiary_name_{{ loop.index }}" name="beneficiary_name_{{ loop.index }}" value="{{ beneficiary.beneficiary_name }}" required><br>
+    
+            <label for="account_number_beneficiary_{{ loop.index }}">Account Number:</label>
+            <input type="text" id="account_number_beneficiary_{{ loop.index }}" name="account_number_beneficiary_{{ loop.index }}" value="{{ beneficiary.account_number_beneficiary }}" required><br>
+    
+            <label for="bank_name_beneficiary_{{ loop.index }}">Bank Name:</label>
+            <input type="text" id="bank_name_beneficiary_{{ loop.index }}" name="bank_name_beneficiary_{{ loop.index }}" value="{{ beneficiary.bank_name_beneficiary }}"><br>
+    
+            <label for="relationship_{{ loop.index }}">Relationship:</label>
+            <input type="text" id="relationship_{{ loop.index }}" name="relationship_{{ loop.index }}" value="{{ beneficiary.relationship }}"><br>
+        </div>
+        {% endfor %}
+    
+        <!-- Add more input fields for other details as needed -->
+    
+        <button type="submit">Save Changes</button>
+    </form>
+     
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

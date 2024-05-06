@@ -1,0 +1,146 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+section {
+    margin: 20px;
+}
+
+#user-list {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#user-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#user-list li {
+    margin: 5px 0;
+}
+
+#client-operations {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#client-operations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#client-operations li {
+    margin: 5px 0;
+}
+
+
+#withdraw-deposit {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#withdraw-deposit form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#withdraw-deposit label {
+    margin-bottom: 5px;
+}
+
+#withdraw-deposit input {
+    margin-bottom: 10px;
+}
+
+#withdraw-deposit button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#withdraw-deposit button:hover {
+    background-color: #45a049;
+}
+/* ... (previous code) */
+
+#transfers {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#transfers form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#transfers label {
+    margin-bottom: 5px;
+}
+
+#transfers input {
+    margin-bottom: 10px;
+}
+
+#transfers button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#transfers button:hover {
+    background-color: #45a049;
+}
+
+/* ... (previous code) */
+
+#transaction-history {
+    margin-top: 20px;
+}
+
+#transaction-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#transaction-history th, #transaction-history td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#transaction-history th {
+    background-color: #4CAF50;
+    color: white;
+}
+
